@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Today</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <header>
+        <h1 style="font-size: 20px;">The world today <span id="displayDate"></span>, on 1 page.</h1>
+    </header>
+    <ul id="newsList">
+        <!-- News blocks rendered here -->
+    </ul>
+
+    <div id="footer" style="text-align: center; padding: 5px; margin-bottom: 10px;">
+        <p>A project developed by Adam Chain / <a href="https://adamchain.dev/" target="_blank">adamchain.dev</a></p>
+    </div>
+</body>
+
+<!--fetch news-->
+<script type="module">
+    import { fetchNews, listForWeb } from './fetch.js';
+
+    async function renderNews() {
+        //get data from fetch.js 
+        await fetchNews();
+
+        const newsList = document.getElementById('newsList');
+        newsList.innerHTML = ''; // Clear existing content
+
+        // render each article, limit 10 via slice
+        listForWeb.slice(0, 10).forEach(({ title, description, url, urlToImage, sourceName }) => {
+            const listItem = document.createElement('div');
+            listItem.className = 'news-item';
+            listItem.innerHTML = `
+            <a href="${url}" target="blank">
+            <img class="news-image" src="${urlToImage}" alt="${title}">  
+            </a> 
+            <h3>${title}</h3>
+                <p>${description}</p>
+                <a href="${url}" target="_blank">
+                Read more <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            `;
+            newsList.appendChild(listItem);
+        });
+    }
+
+    //render on page load
+    renderNews();
+</script>
+
+<!--generate date-->
+<script>
+    const displayDate = document.getElementById('displayDate');
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-US');
+    displayDate.textContent = formattedDate;
+    console.log(formattedDate); // Example: 12/31/2024
+</script>
+
+</html>
