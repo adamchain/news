@@ -1,8 +1,10 @@
 # World Today, On 1 Page
 
-<img width="1280" alt="news" src="https://github.com/user-attachments/assets/b114006c-32c3-4f3d-bd19-50a57a97b739" />
 
 **World Today** is a JavaScript-based application designed to keep users informed with top news headlines, summarized insights, and trending topics. With integrations for OpenAI's GPT and Vonage APIs, this project offers a seamless way to stay updated via a web interface and daily SMS summaries.
+
+
+<img width="1280" alt="news" src="https://github.com/user-attachments/assets/b114006c-32c3-4f3d-bd19-50a57a97b739" />
 
 ## Features
 
